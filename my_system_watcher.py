@@ -1,5 +1,3 @@
-import os
-import sys
 import psutil
 from PySide6.QtWidgets import QSystemTrayIcon, QMenu, QApplication, QStyle
 from PySide6.QtCore import QObject, QTimer, Slot
