@@ -1,3 +1,5 @@
+import os
+import sys
 import psutil
 from PySide6.QtWidgets import QSystemTrayIcon, QMenu, QApplication, QStyle
 from PySide6.QtCore import QObject, QTimer, Slot
@@ -8,7 +10,8 @@ class SystemWatcher(QObject):
     def __init__(self):
         super().__init__()
         self.tray_icon = QSystemTrayIcon(self)
-        std_icon = QPixmap('cpu.png')  
+        self.image = QApplication.style().standardIcon(QStyle.StandardPixmap.SP_ComputerIcon)
+        std_icon = QPixmap(self.image)  
         self.tray_icon.setIcon(std_icon)
 
         self.setup_menu()
@@ -30,5 +33,6 @@ class SystemWatcher(QObject):
         ram_usage = psutil.virtual_memory().percent
         text = f'CPU: {cpu_usage}% | RAM: {ram_usage}%'
         self.tray_icon.setToolTip(text)
-
+        
+   
     
